@@ -29,7 +29,12 @@ public class Utils {
         environment.put(Context.INITIAL_CONTEXT_FACTORY, "com.sun.jndi.ldap.LdapCtxFactory");
         environment.put(Context.SECURITY_AUTHENTICATION, "simple");
         environment.put(Context.REFERRAL, "follow");
-
+        // adding pooled resource
+        environment.put("com.sun.jndi.ldap.connect.pool", "true");
+        environment.put("com.sun.jndi.ldap.connect.pool.initsize", "3");
+        environment.put("com.sun.jndi.ldap.connect.pool.maxsize", "10");
+        environment.put("com.sun.jndi.ldap.connect.pool.prefsize", "5");
+        
         String connectionUrl = ConfigLoader.getInstance().getProperty("CONNECTION.URL");
         if (StringUtils.isNotBlank(connectionUrl)) {
             environment.put(Context.PROVIDER_URL, connectionUrl);

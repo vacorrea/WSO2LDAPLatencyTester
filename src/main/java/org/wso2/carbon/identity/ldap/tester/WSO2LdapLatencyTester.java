@@ -15,10 +15,11 @@ public class WSO2LdapLatencyTester {
 
     public static void main(String[] args) {
 
+        long totalInitialTime = System.currentTimeMillis();
         System.out.println("----------------------------------------------------------------------");
-        System.out.println("|                       WSO2 LDAP LATENCY TESTER                     |");
+        System.out.println("|                WSO2 POOLED LDAP LATENCY TESTER                     |");
         System.out.println("----------------------------------------------------------------------");
-
+        
         System.out.println("----------------------------------------------------------------------");
         System.out.println("|                          Config Properties                         |");
         System.out.println("----------------------------------------------------------------------");
@@ -73,10 +74,11 @@ public class WSO2LdapLatencyTester {
         executor.shutdown();
         while (!executor.isTerminated()) {
         }
-
+        long totalFinalTime = System.currentTimeMillis();
         System.out.println("----------------------------------------------------------------------");
         System.out.println("|                         All tests completed                        |");
         System.out.println("----------------------------------------------------------------------");
+        System.out.println("Total time " + (totalFinalTime - totalInitialTime) + " ms");
     }
 
 }
